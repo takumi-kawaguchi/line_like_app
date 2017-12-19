@@ -17,6 +17,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'haml-rails'
 gem 'erb2haml'
 gem 'devise'
+gem 'simple_form'
 
 group :development, :test do
   gem 'capybara', '~> 2.13'

@@ -1,0 +1,9 @@
+%h1 Talks#new
+%p Find me in app/views/talks/new.html.haml
+
+= simple_form_for @talk do |f|
+  - User.all.each do |user|
+    = f.check_box :users, {multiple: true}, user.id, nil
+    = user.email
+  = f.button :submit
+
