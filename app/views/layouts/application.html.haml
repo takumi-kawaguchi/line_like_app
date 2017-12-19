@@ -8,7 +8,7 @@
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
   %body
     - if current_user.present?
-      = current_user.email
+      = current_user.name
       = link_to "ログアウト", destroy_user_session_path
     - else
       = link_to "ログイン", new_user_session_path

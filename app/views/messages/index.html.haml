@@ -1,0 +1,15 @@
+%h1 Messages#index
+%p Find me in app/views/messages/index.html.haml
+
+- if @messages.empty?
+  %p メッセージを送ってみよう！
+- else
+  - @messages.each do |message|
+    = message.text
+    = "by #{message.user.name}"
+
+= simple_form_for @message, url: {action: 'create'} do |f|
+  = f.text_area :text
+  = f.hidden_field :talk_id, value: params[:talk_id]
+  = f.hidden_field :user_id, value: current_user.id
+  = f.button :submit

@@ -1,2 +1,5 @@
 %h1 Talks#show
 %p Find me in app/views/talks/show.html.haml
+
+= "messageを送る"
+= link_to "メッセージ画面へ", talk_messages_path(@talk), talk_id: @talk.id
