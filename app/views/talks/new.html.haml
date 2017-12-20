@@ -2,8 +2,9 @@
 %p Find me in app/views/talks/new.html.haml
 
 = simple_form_for @talk do |f|
+  = f.text_field :title
+  = f.hidden_field :user_1_id, value: current_user.id
   - User.all.each do |user|
-    = f.check_box :users, {multiple: true}, user.id, nil
+    = f.radio_button :user_2_id, value: user.id
     = user.email
   = f.button :submit
-

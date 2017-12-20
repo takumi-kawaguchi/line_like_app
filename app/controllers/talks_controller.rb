@@ -16,7 +16,7 @@ class TalksController < ApplicationController
     if @talk.save!
       redirect_to talk_messages_path(@talk)
     else
-      render 'new'  
+      render 'new'
     end
   end
 
@@ -25,6 +25,6 @@ class TalksController < ApplicationController
 
 private
   def talk_params
-    params.require(:talk).permit(:title, users: [])
+    params.require(:talk).permit(:title, :user_1_id, :user_2_id)
   end
 end
