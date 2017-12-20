@@ -12,9 +12,10 @@ class TalksController < ApplicationController
   end
 
   def create
+    binding.pry
     @talk = Talk.create(talk_params)
     if @talk.save!
-      redirect_to talk_messages_path(@talk)
+      redirect_to talk_messages_path(id: @talk.id)
     else
       render 'new'
     end

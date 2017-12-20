@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   def index
-    @messages = Message.all
+    @messages = Message.where(talk_id: params[:talk_id]).all
     @message  = Message.new
   end
 
