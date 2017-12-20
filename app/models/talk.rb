@@ -1,4 +1,3 @@
 class Talk < ApplicationRecord
-  belongs_to :user, optional: true
-  serialize :users
+  has_many :messages
 end
