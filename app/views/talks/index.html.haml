@@ -1,2 +1,13 @@
 %h1 Talks#index
 %p Find me in app/views/talks/index.html.haml
+
+- @talks.each do |talk|
+  - if talk.title.present?
+    = link_to talk.title, talk_messages_path(talk)
+  - else
+    = link_to "#{User.find(talk.user_1_id).name}と#{User.find(talk.user_2_id).name}",
+              talk_messages_path(talk)
+  = "メッセージ数: #{talk.messages.count}"
+  %br
+
+= link_to "ホームに戻る", root_path

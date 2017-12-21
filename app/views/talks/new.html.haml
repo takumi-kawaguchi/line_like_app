@@ -4,8 +4,14 @@
 = simple_form_for @talk do |f|
   = f.input :title
   = f.hidden_field :user_1_id, value: current_user.id
-  - User.all.each do |user|
-    = f.radio_button :user_2_id, user.id
-    = user.email
+  - @users.each do |user|
+    - if talk_already_exists?(user)
+      = link_to "#{user.name}とのトークはこちら", talk_messages_path(existing_talk(user))
+    - else
+      = f.radio_button :user_2_id, user.id
+      = user.name
+    %br
   %br
   = f.button :submit
+
+= link_to "ホームに戻る", root_path

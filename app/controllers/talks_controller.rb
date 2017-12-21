@@ -1,6 +1,7 @@
 class TalksController < ApplicationController
   def index
-    @talks = Talk.all
+    @talks = Talk.where(user_1_id: current_user.id)
+                 .or(Talk.where(user_2_id: current_user.id)).all
   end
 
   def show
@@ -9,13 +10,13 @@ class TalksController < ApplicationController
 
   def new
     @talk = Talk.new
+    @users = User.all
   end
 
   def create
-    binding.pry
     @talk = Talk.create(talk_params)
     if @talk.save!
-      redirect_to talk_messages_path(id: @talk.id)
+      redirect_to talk_messages_path(@talk.id)
     else
       render 'new'
     end
