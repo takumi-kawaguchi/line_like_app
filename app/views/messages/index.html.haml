@@ -1,16 +1,45 @@
-%h1 Messages#index
-%p Find me in app/views/messages/index.html.haml
-
 - if @messages.empty?
   %p メッセージを送ってみよう！
 - else
-  - @messages.each do |message|
-    = message.text
-    = "by #{message.user.name}"
-    %br
+  .talk
+    - @messages.each do |message|
+      - sender_type = message.user.id == current_user.id ? "current_user" : "friend_user"
+      .message
+        %div{class: "#{sender_type}"}
+          .content
+            = message.text
+          = "by #{message.user.name}"
+      %br
 
-= simple_form_for @message, url: {action: 'create'} do |f|
-  = f.text_area :text
-  = f.hidden_field :talk_id, value: params[:talk_id]
-  = f.hidden_field :user_id, value: current_user.id
-  = f.button :submit
+  .message_form
+    = simple_form_for @message, url: {action: 'create'} do |f|
+      = f.text_area :text
+      = f.hidden_field :talk_id, value: params[:talk_id]
+      = f.hidden_field :user_id, value: current_user.id
+      = f.button :submit
+
+:css
+  .talk{
+    width: 1000px;
+    margin: auto;
+  }
+  .message_form{
+    width: 1000px;
+    margin: auto;
+    clear: both;
+  }
+  .message{
+    margin: 30px;
+  }
+  .current_user{
+    float: right;
+    height: 50px;
+    width: 100px;
+    background: #88E054;
+  }
+  .friend_user{
+    float: left;
+    height: 50px;
+    width: 100px;
+    background: white;
+  }
