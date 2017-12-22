@@ -6,17 +6,17 @@
       - sender_type = message.user.id == current_user.id ? "current_user" : "friend_user"
       .message
         %div{class: "#{sender_type}"}
+          = message.user.name
           .content
             = message.text
-          = "by #{message.user.name}"
       %br
 
-  .message_form
-    = simple_form_for @message, url: {action: 'create'} do |f|
-      = f.text_area :text
-      = f.hidden_field :talk_id, value: params[:talk_id]
-      = f.hidden_field :user_id, value: current_user.id
-      = f.button :submit
+.message_form
+  = simple_form_for @message, url: {action: 'create'} do |f|
+    = f.text_area :text
+    = f.hidden_field :talk_id, value: params[:talk_id]
+    = f.hidden_field :user_id, value: current_user.id
+    = f.button :submit
 
 :css
   .talk{
@@ -29,17 +29,17 @@
     clear: both;
   }
   .message{
-    margin: 30px;
+    margin: 50px;
   }
   .current_user{
     float: right;
-    height: 50px;
-    width: 100px;
     background: #88E054;
+    border-radius: 10px;
+    padding: 5px;
   }
   .friend_user{
     float: left;
-    height: 50px;
-    width: 100px;
     background: white;
+    border-radius: 10px;
+    padding: 5px;
   }
