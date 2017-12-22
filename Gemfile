@@ -18,6 +18,10 @@ gem 'haml-rails'
 gem 'erb2haml'
 gem 'devise'
 gem 'simple_form'
+gem 'bootstrap-sass'
+gem 'sass-rails', '~> 5.0'
+gem 'honoka-rails', '>= 3.3.6.3'
+gem 'jquery-rails'
 
 group :development, :test do
   gem 'capybara', '~> 2.13'
